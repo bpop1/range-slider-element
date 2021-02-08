@@ -1,6 +1,6 @@
 # &lt;range-slider&gt; element
 
-> A customizable range slider element.
+> A customizable range slider element. Forked from https://github.com/andreruffert/range-slider-element and enhanced to support vertical alignment.
 
 [![CI status](https://github.com/andreruffert/range-slider-element/workflows/CI/badge.svg)](https://github.com/andreruffert/range-slider-element/actions?workflow=CI)
 [![npm version](https://img.shields.io/npm/v/range-slider-element.svg)](https://www.npmjs.com/package/range-slider-element)
@@ -45,6 +45,7 @@ import 'range-slider-element';
 * `max` The maximum permitted value. The default is 100.
 * `step` The stepping interval. The default is 1.
 * `value` The value. The default is `min + (max - min) / 2`.
+* `vertical` The value. The default is `false`.
 * [`dir`][dir] Directionality. The default is ltr.
 
 [dir]: https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/dir

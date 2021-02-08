@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "A customizable range slider element forked from https://github.com/andreruffert/range-slider-element",
   "license": "MIT",
-  "repository": "bpop1/range-slider-vertical-element",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bpop1/range-slider-vertical-element.git"
+  },
   "author": "André Ruffert",
   "source": "index.js",
   "main": "dist/index.js",
@@ -29,5 +32,13 @@
     "babel-plugin-transform-class-properties": "^6.24.1",
     "cypress": "^6.0.0",
     "parcel-bundler": "^1.12.4"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/bpop1/range-slider-vertical-element/issues"
+  },
+  "homepage": "https://github.com/bpop1/range-slider-vertical-element#readme",
+  "directories": {
+    "example": "examples"
+  },
+  "dependencies": {}
 }
