@@ -25,7 +25,7 @@ Follows the [ARIA best practices guide on sliders](https://www.w3.org/TR/wai-ari
 ## Install
 
 ```console
-$ npm install range-slider-element
+$ npm install range-slider-vertical-element
 ```
 
 
