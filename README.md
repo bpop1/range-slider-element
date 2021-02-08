@@ -32,7 +32,7 @@ $ npm install range-slider-vertical-element
 ## Usage
 
 ```js
-import 'range-slider-element';
+import 'range-slider-vertical-element';
 ```
 
 ```html
