@@ -1,7 +1,7 @@
 // import * as style from './styles.css';
 
 const UPDATE_EVENTS = ['input', 'change'];
-const REFLECTED_ATTRIBUTES = ['min', 'max', 'step', 'value', 'disabled', 'value-precision'];
+const REFLECTED_ATTRIBUTES = ['min', 'max', 'step', 'value', 'disabled', 'value-precision', 'vertical'];
 
 const ARIA_ATTRIBUTES = {
   value: 'valuenow',
@@ -39,6 +39,7 @@ class RangeSliderElement extends HTMLElement {
   get value() { return this.getAttribute('value') || this._computedValue; }
   get disabled() { return this.getAttribute('disabled') || false }
   get valuePrecision() { return this.getAttribute('value-precision') || ''; }
+  get vertical() { return this.getAttribute('vertical') || false }
   get defaultValue() { return this._defaultValue; }
 
   set min(min) { this.setAttribute('min', min); }
@@ -47,6 +48,7 @@ class RangeSliderElement extends HTMLElement {
   set value(value) { this.setAttribute('value', value); }
   set disabled(disabled) { this.setAttribute('disabled', disabled); }
   set valuePrecision(precision) { this.setAttribute('value-precision', precision); }
+  set vertical(vertical) { this.setAttribute('vertical', vertical); }
   set defaultValue(value) { this._defaultValue = value; }
 
   connectedCallback() {
@@ -65,6 +67,10 @@ class RangeSliderElement extends HTMLElement {
     setAriaAttribute(this, 'value', this.value);
     setAriaAttribute(this, 'min', this.min);
     setAriaAttribute(this, 'max', this.max);
+
+    if (Boolean(this.vertical)) {
+      this.classList.add('vertical-range-slider');
+    }
   }
 
   disconnectedCallback() {
@@ -124,10 +130,21 @@ class RangeSliderElement extends HTMLElement {
     const min = Number(this.min);
     const max = Number(this.max);
     const oldValue = this.value;
-    const fullWidth = e.target.offsetWidth;
-    const offsetX = Math.min(Math.max(e.offsetX, 0), fullWidth);
-    const percent = offsetX / fullWidth;
-    const percentComplete = isRTL ? 1 - percent : percent;
+    let percentComplete;
+
+    if (Boolean(this.vertical)) {
+      const fullHeight = e.target.offsetHeight;
+      const offsetY = Math.min(Math.max(e.offsetY, 0), fullHeight);
+      const percent = offsetY / fullHeight;
+
+      percentComplete = isRTL ? 1 - percent : percent;
+    } else {
+      const fullWidth = e.target.offsetWidth;
+      const offsetX = Math.min(Math.max(e.offsetX, 0), fullWidth);
+      const percent = offsetX / fullWidth;
+
+      percentComplete = isRTL ? 1 - percent : percent;
+    }
 
     // Fit the percentage complete between the range [min,max]
     // by remapping from [0, 1] to [min, min+(max-min)].
