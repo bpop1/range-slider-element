@@ -39,7 +39,7 @@ class RangeSliderElement extends HTMLElement {
   get value() { return this.getAttribute('value') || this._computedValue; }
   get disabled() { return this.getAttribute('disabled') || false }
   get valuePrecision() { return this.getAttribute('value-precision') || ''; }
-  get vertical() { return this.getAttribute('vertical') || false }
+  get vertical() { return this.getAttribute('vertical') ? this.getAttribute('vertical') === 'true' : false }
   get defaultValue() { return this._defaultValue; }
 
   set min(min) { this.setAttribute('min', min); }
@@ -68,7 +68,7 @@ class RangeSliderElement extends HTMLElement {
     setAriaAttribute(this, 'min', this.min);
     setAriaAttribute(this, 'max', this.max);
 
-    if (Boolean(this.vertical)) {
+    if (this.vertical) {
       this.classList.add('vertical-range-slider');
     }
   }
@@ -132,7 +132,7 @@ class RangeSliderElement extends HTMLElement {
     const oldValue = this.value;
     let percentComplete;
 
-    if (Boolean(this.vertical)) {
+    if (this.vertical) {
       const fullHeight = e.target.offsetHeight;
       const offsetY = Math.min(Math.max(e.offsetY, 0), fullHeight);
       const percent = offsetY / fullHeight;
