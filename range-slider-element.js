@@ -67,10 +67,6 @@ class RangeSliderElement extends HTMLElement {
     setAriaAttribute(this, 'value', this.value);
     setAriaAttribute(this, 'min', this.min);
     setAriaAttribute(this, 'max', this.max);
-
-    if (this.vertical) {
-      this.classList.add('vertical-range-slider');
-    }
   }
 
   disconnectedCallback() {
@@ -83,6 +79,17 @@ class RangeSliderElement extends HTMLElement {
     if (oldValue === newValue || this._ignoreChange) return;
     this._update();
     setAriaAttribute(this, name, newValue);
+
+    if (name === 'vertical') {
+      console.log(this.vertical);
+
+      if (this.vertical) {
+        this.classList.add('vertical-range-slider');
+      }
+      else {
+        this.classList.remove('vertical-range-slider');
+      }
+    }
   }
 
   _startHandler = e => {
