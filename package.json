@@ -1,6 +1,6 @@
 {
   "name": "range-slider-vertical-element",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A customizable range slider element forked from https://github.com/andreruffert/range-slider-element",
   "license": "MIT",
   "repository": {
